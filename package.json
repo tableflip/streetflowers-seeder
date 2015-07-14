@@ -1,0 +1,23 @@
+{
+  "name": "streetflower-seeds",
+  "version": "0.1.0",
+  "description": "Seeds the street flower project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "seed": "node seed.js",
+    "test": "tape tests.js"
+  },
+  "author": "Bernard Mordan <bernard@tableflip.io> (http://github.com/bmordan)",
+  "license": "ISC",
+  "dependencies": {
+    "Faker": "^0.7.2",
+    "mo": "^1.7.3",
+    "mongodb-wrapper": "^1.0.3",
+    "seed": "^0.4.4",
+    "seed-mongodb": "^0.6.0"
+  },
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
+}

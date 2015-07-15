@@ -1,5 +1,5 @@
 var Faker = require('Faker')
-var fakeLocate = require('./FakeLocate')
+var fakeLocate = require('./fakeLocate')
 var mongod = require('mongodb-wrapper')
 var db = mongod.db('localhost', 27017, 'test')
 db.collection('users')
@@ -34,6 +34,7 @@ function Business () {
     name: Faker.Name.findName(),
     email: Faker.Internet.email(),
     password: Faker.Internet.domainWord(),
+    image: Faker.Image.abstractImage(),
     profile: {
       business_name: Faker.Company.companyName(),
       address: address,

@@ -5,6 +5,10 @@ clone this repo once you have [Street Flower](https://github.com/tableflip/stree
 
 To seed your project with businesses run the following command from within the project
 ```
-node seed 567
+node seed 567 [optional]
 ```
-This would add 567 business profiles to the SE1 area in central London.
+This would add 567 business profiles to the SE1 area in central London to a default collection 'test'
+```
+node seed 5 collectionName
+```
+This would add 5 business profiles to your collection called 'collectionName'

@@ -1,11 +1,12 @@
 var Faker = require('Faker')
 var fakeLocate = require('./fakeLocate')
 var mongod = require('mongodb-wrapper')
-var db = mongod.db('localhost', 27017, 'test')
-db.collection('users')
 var stop = parseInt(process.argv[2]) || 250
+var name = process.argv[3] || 'test'
+var db = mongod.db('localhost', 27017, name)
+db.collection('users')
 
-addOne(1)
+addOne(0)
 
 function addOne (count) {
   if (count === stop) return process.exit()

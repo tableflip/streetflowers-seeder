@@ -1,6 +1,7 @@
 var Faker = require('Faker')
 var fakeLocate = require('./fakeLocate')
 var mongod = require('mongodb-wrapper')
+var shortid = require('shortid')
 var stop = parseInt(process.argv[2]) || 250
 var name = process.argv[3] || 'test'
 var db = mongod.db('localhost', 27017, name)
@@ -20,62 +21,56 @@ function addOne (count) {
 }
 
 function Business () {
-
-  var address = [
-    Faker.Address.streetName(),
-    Faker.Address.streetAddress(),
-    Faker.Address.ukCounty()
-  ].join(',')
-
   var location = fakeLocate()
-
   var business_ = _getBusinessType()
+  var username = Faker.internet.userName()
 
   return {
-    name: Faker.Name.findName(),
-    email: Faker.Internet.email(),
-    password: Faker.Internet.domainWord(),
-    image: Faker.Image.abstractImage(),
+    puid: shortid(),
+    name: Faker.name.findName(),
+    email: Faker.internet.email(),
+    password: Faker.internet.password(),
     profile: {
-      business_name: Faker.Company.companyName(),
-      address: address,
+      puid: shortid(),
+      business_name: Faker.company.companyName(),
+      address: Faker.address.streetAddress(),
       postcode: location.postcode,
       business_type: business_.type,
-      business_description: Faker.Lorem.sentences(),
+      business_description: Faker.lorem.sentence(),
       mf_time: '09:30',
       mf_close_time: '15:55',
       sat_time: '10:00',
       sat_close_time: '17:00',
       sun_time: '12:00',
       sun_close_time: '16:00',
-      offer: 'none',
-      website: Faker.Internet.domainName(),
-      phone_number: Faker.PhoneNumber.phoneNumber(),
-      color: business_.color,
+      website: Faker.internet.url(),
+      phone_number: Faker.phone.phoneNumber(),
+      twitter: 'http://twitter.com/' + username,
+      facebook: 'http://facebook.com/' + username,
       location: {
         lat: location.lat,
         lng: location.lng 
-      }
+      },
+      icon: business_.icon,
+      image: Faker.image.imageUrl()
     }
   }
-
 }
 
+var types = [ 'Food & Drink',
+  'Clothes & Fashion',
+  'Home & Office',
+  'Service or Business',
+  'Trade & Craft People',
+  'Beauty & Styling',
+  'Leisure & Activities',
+  'Other']
+
+var icons = ['arts-crafts-hobbies', 'beauty-grooming', 'bookshops', 'charity', 'commerce-finance', 'counter-services', 'electrical-hardware', 'entertainment', 'faith', 'fashion', 'food-drink', 'general-holding', 'health-and-fitness', 'home-and-garden', 'medical-dental-pharma', 'nightlife', 'popup-event', 'retail-shopping', 'sport-and-outdoors', 'store', 'trade-services', 'transport']
+
 function _getBusinessType () {
-  var businesses = [
-    ["food_drink", "purple"],
-    ["clothes_fashion", "red"],
-    ["home_office", "brown"],
-    ["service_business", "beige"],
-    ["trades_crafts_people", "light-purple"],
-    ["beauty_styling", "light-blue"],
-    ["leisure_activities", "blue"],
-    ["other", "grey"]
-  ]
-  var index = Math.floor(Math.random() * businesses.length-1) + 1
-  var selected = businesses[index]
   return {
-    type: selected[0],
-    color: selected[1]
+    type: Faker.random.arrayElement(types),
+    icon: Faker.random.arrayElement(icons)
   }
 }

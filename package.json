@@ -11,8 +11,9 @@
   "author": "Bernard Mordan <bernard@tableflip.io> (http://github.com/bmordan)",
   "license": "ISC",
   "dependencies": {
-    "Faker": "^0.7.2",
-    "mongodb-wrapper": "^1.0.3"
+    "faker": "^3.0.1",
+    "mongodb-wrapper": "^1.0.3",
+    "shortid": "^2.2.2"
   },
   "devDependencies": {
     "tape": "^4.0.0"

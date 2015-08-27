@@ -1,4 +1,4 @@
-var Faker = require('Faker')
+var Faker = require('faker')
 var fakeLocate = require('./fakeLocate')
 var mongod = require('mongodb-wrapper')
 var shortid = require('shortid')
